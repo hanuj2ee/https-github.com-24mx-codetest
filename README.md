@@ -48,6 +48,7 @@ We would like to see:
 
 The REST service should support the following resources
 --------------------------------------------------------------------------------
+```
 #%RAML 0.8
 title: Simple blog post API
 version: 1
@@ -101,7 +102,7 @@ mediaType: application/json
                     description: If post with id does not exist // noContent
 
 -------------------------------------------------------------------------------- 
-
+```
 References:
 https://jersey.java.net/documentation/latest/client.html
 http://raml.org/
