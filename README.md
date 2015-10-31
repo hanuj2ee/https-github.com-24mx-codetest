@@ -98,8 +98,8 @@ mediaType: application/json
             responses:
                 200: 
                     description: If post with id does was successfully deleted
-                204: 
-                    description: If post with id does not exist // noContent
+                404: 
+                    description: If post with id does not exist
 
 -------------------------------------------------------------------------------- 
 ```
