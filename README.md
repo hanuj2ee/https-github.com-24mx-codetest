@@ -64,9 +64,9 @@ paths:
     post:
       tags:
       - "pet"
-      summary: "Add a new pet to the store"
+      summary: "Add a new post"
       description: ""
-      operationId: "addPet"
+      operationId: "addPost"
       consumes:
       - "application/json"
       - "application/xml"
@@ -76,7 +76,7 @@ paths:
       parameters:
       - in: "body"
         name: "body"
-        description: "Pet object that needs to be added to the store"
+        description: "Post object that needs to be added"
         required: true
         schema:
           $ref: "#/definitions/Post"
@@ -87,6 +87,34 @@ paths:
             $ref: "#/definitions/Post"
         405:
           description: "Invalid input"
+    put:
+      tags:
+      - "pet"
+      summary: "Updates a post"
+      description: ""
+      operationId: "updatePost"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Post object that needs to be updated"
+        required: true
+        schema:
+          $ref: "#/definitions/Post"
+      responses:
+        201: 
+          description: "OK of post"
+          schema:
+            $ref: "#/definitions/Post"
+        404: 
+          description: "Post not found"
+        405:
+          description: "Invalid input"      
   /posts/{postId}:
     get:
       tags:
@@ -120,7 +148,7 @@ paths:
       parameters:
       - name: "postId"
         in: "path"
-        description: "Pet id to delete"
+        description: "Post id to delete"
         required: true
         type: "string"
       responses:
@@ -147,7 +175,7 @@ definitions:
 ```
 References:
 https://jersey.java.net/documentation/latest/client.html
-http://raml.org/
+http://swagger.io/
 
 
 ================================================================================
