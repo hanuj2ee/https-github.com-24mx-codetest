@@ -47,61 +47,103 @@ We would like to see:
         - Delete one post by id
 
 The REST service should support the following resources
+(swagger, can be viewd in editor.swagger.io)
 --------------------------------------------------------------------------------
 ```
-#%RAML 0.8
-title: Simple blog post API
-version: 1
-baseUri: http://localhost:8080/blog-web/
-mediaType: application/json
-/posts
+swagger: "2.0"
+info:
+  description: "This is the definition of the API for code test as Pierce AB"
+  version: "1.0.0"
+  title: "Simple blog post API"
+host: "localhost:8080"
+basePath: "/blog-web"
+schemes:
+- "http"
+paths:
+  /posts:
+    post:
+      tags:
+      - "pet"
+      summary: "Add a new pet to the store"
+      description: ""
+      operationId: "addPet"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Pet object that needs to be added to the store"
+        required: true
+        schema:
+          $ref: "#/definitions/Post"
+      responses:
+        201: 
+          description: "OK of post"
+          schema:
+            $ref: "#/definitions/Post"
+        405:
+          description: "Invalid input"
+  /posts/{postId}:
     get:
-        description: List all posts
-    post: 
-        description: Creates a new post
-        body:
-            application/json: !!null
-            example: |
-                { "id":"1",
-                  "title":"First title",
-                  "content":"First content"}
-                }
-        responses:
-            201: 
-                description: Also returns location of created resource
-                uriParameters:
-                    postId:
-                        type: string
-                        example: http://localhost:8080/blog-web/posts/1
-    /{postId}
-        get:
-            description: Get one post by id
-            uriParameters:
-                 postId:
-                   type: string
-            responses:
-                200:
-                    body: 
-                        application/json:
-                            example: |
-                                { "id":"1",
-                                  "title":"First title",
-                                  "content":"First content"}
-                                }
-                204: 
-                    description: If post with id does not exist // noContent
-        delete:
-            description: Delete one post by id
-            uriParameters:
-                 postId:
-                   type: string
-            responses:
-                200: 
-                    description: If post with id does was successfully deleted
-                404: 
-                    description: If post with id does not exist
+      tags:
+      - "post"
+      summary: "Find post by ID"
+      description: "Returns a single post"
+      operationId: "getPostById"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - name: "postId"
+        in: "path"
+        description: "ID of pet to return"
+        required: true
+        type: "integer"
+        format: "int64"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Post"
+        404:
+          description: "Post not found"
+    delete:
+      tags:
+      - "post"
+      summary: "Deletes a post"
+      description: ""
+      operationId: "deletePost"
+      parameters:
+      - name: "postId"
+        in: "path"
+        description: "Pet id to delete"
+        required: true
+        type: "string"
+      responses:
+        202:
+          description: "Delete accepted"
+        404:
+          description: "Post not found"
+definitions:
+  Post:
+    type: "object"
+    required:
+    - "title"
+    - "content"
+    properties:
+      id:
+        type: "string"
+      title:
+        type: "string"
+        example: "what I did today"
+      content:
+        type: "string"
+        description: "wrote a boring post"
 
--------------------------------------------------------------------------------- 
 ```
 References:
 https://jersey.java.net/documentation/latest/client.html
