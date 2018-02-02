@@ -63,7 +63,7 @@ paths:
   /posts:
     post:
       tags:
-      - "pet"
+      - "post"
       summary: "Add a new post"
       description: ""
       operationId: "addPost"
@@ -89,7 +89,7 @@ paths:
           description: "Invalid input"
     put:
       tags:
-      - "pet"
+      - "post"
       summary: "Updates a post"
       description: ""
       operationId: "updatePost"
@@ -128,7 +128,7 @@ paths:
       parameters:
       - name: "postId"
         in: "path"
-        description: "ID of pet to return"
+        description: "ID of post to return"
         required: true
         type: "integer"
         format: "int64"
