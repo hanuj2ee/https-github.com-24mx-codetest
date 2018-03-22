@@ -114,7 +114,23 @@ paths:
         404: 
           description: "Post not found"
         405:
-          description: "Invalid input"      
+          description: "Invalid input"  
+  /posts/:
+    get:
+      tags:
+      - "post"
+      summary: "Get all posts"
+      description: "Returns all posts"
+      operationId: "getAllPosts"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Post"
   /posts/{postId}:
     get:
       tags:
@@ -152,8 +168,8 @@ paths:
         required: true
         type: "string"
       responses:
-        202:
-          description: "Delete accepted"
+        200:
+          description: "successful operation"
         404:
           description: "Post not found"
 definitions:
@@ -165,12 +181,13 @@ definitions:
     properties:
       id:
         type: "string"
+        example: "1"
       title:
         type: "string"
         example: "what I did today"
       content:
         type: "string"
-        description: "wrote a boring post"
+        example: "wrote a boring post"
 
 ```
 References:
