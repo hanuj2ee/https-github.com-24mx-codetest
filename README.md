@@ -61,6 +61,20 @@ schemes:
 - "http"
 paths:
   /posts:
+    get:
+      tags:
+      - "post"
+      summary: "Get all posts"
+      description: "Returns all posts"
+      operationId: "getAllPosts"
+      produces:
+      - "application/xml"
+      - "application/json"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Post"
     post:
       tags:
       - "post"
@@ -114,23 +128,7 @@ paths:
         404: 
           description: "Post not found"
         405:
-          description: "Invalid input"  
-  /posts/:
-    get:
-      tags:
-      - "post"
-      summary: "Get all posts"
-      description: "Returns all posts"
-      operationId: "getAllPosts"
-      produces:
-      - "application/xml"
-      - "application/json"
-      parameters:
-      responses:
-        200:
-          description: "successful operation"
-          schema:
-            $ref: "#/definitions/Post"
+          description: "Invalid input"
   /posts/{postId}:
     get:
       tags:
