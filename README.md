@@ -151,8 +151,8 @@ paths:
           description: "successful operation"
           schema:
             $ref: "#/definitions/Post"
-        404:
-          description: "Post not found"
+        204:
+          description: "No content"
     delete:
       tags:
       - "post"
