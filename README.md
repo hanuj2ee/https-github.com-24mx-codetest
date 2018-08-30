@@ -144,8 +144,7 @@ paths:
         in: "path"
         description: "ID of post to return"
         required: true
-        type: "integer"
-        format: "int64"
+        type: "string"
       responses:
         200:
           description: "successful operation"
